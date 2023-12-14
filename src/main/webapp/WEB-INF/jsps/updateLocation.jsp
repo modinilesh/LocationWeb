@@ -62,7 +62,7 @@
 <h1>Welcome Buddy! Update the Location from this page. </h1>
 
 <div>
-  <form action="saveLocation" method="post">
+  <form action="updateLoc" method="post">
     <label for="id">ID:</label>
     <input type="text" id="id" name="id" value="${location.id}" readonly="true" required >
 
@@ -75,11 +75,11 @@
     <div class="location-options">
       <label>Location Type:</label>
       <div>
-        <input type="radio" id="urban" name="type" value="${location.type=='URBAN'?'checked':''}" required>
+        <input type="radio" id="urban" name="type" value="URBAN" ${location.type=='URBAN'?'checked':''} required>
         <label for="urban">Urban</label>
       </div>
       <div>
-        <input type="radio" id="rural" name="type" value="${location.type=='RURAL'?'checked':''}" required>
+        <input type="radio" id="rural" name="type" value="RURAL" ${location.type=='RURAL'?'checked':''} required>
         <label for="rural">Rural</label>
       </div>
     </div>

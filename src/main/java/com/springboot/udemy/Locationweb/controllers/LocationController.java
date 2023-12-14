@@ -72,11 +72,21 @@ public class LocationController {
 		// @RequestParam("id") --> tells id variable is coming from UI/URI
 		Location location = service.getLocationById(id);
 		service.deleteLocation(location);
-		
+
 		// sending response back to the UI editLocation
 		modelmap.addAttribute("location", location);
 
 		return "updateLocation";
+	}
+
+	@PostMapping("/updateLoc")
+	public String updateloc(@ModelAttribute("location") Location location, ModelMap modelmap) {
+		service.updateLocation(location);
+
+		// after update sending response back to the UI
+		List<Location> allLocations = service.getAllLocations();
+		modelmap.addAttribute("locations", allLocations);
+		return "displayLocations";
 	}
 
 }
