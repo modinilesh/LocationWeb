@@ -59,7 +59,7 @@ public class LocationController {
 		modelmap.addAttribute("message", msg);
 		
 		//Sending Email confirmation of added Location
-		emailUtil.sendEmail("modinilesh833@gmail.com", "Location Saved", "Location is saved in DB Successfully.");
+		emailUtil.sendEmail("nileshmodi081@gmail.com", "Location Saved", msg +" Data : " +savedLocation.toString());
 
 		return "createLocation";
 	}
