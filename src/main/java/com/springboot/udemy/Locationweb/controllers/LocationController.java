@@ -12,13 +12,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springboot.udemy.Locationweb.entities.Location;
+import com.springboot.udemy.Locationweb.repository.LocationRepository;
 import com.springboot.udemy.Locationweb.service.LocationService;
+import com.springboot.udemy.Locationweb.util.EmailUtil;
+import com.springboot.udemy.Locationweb.util.ReportUtil;
+
+import jakarta.servlet.ServletContext;
 
 @Controller
 public class LocationController {
 
 	@Autowired
-	LocationService service;
+	private LocationService service;
+	
+	@Autowired
+	private LocationRepository repository;
+	
+	@Autowired
+	private EmailUtil emailUtil;
+	
+	@Autowired
+	private ReportUtil reportUtil;
+	
+	@Autowired
+	ServletContext servletContext;
 
 	// creating the Location
 	@RequestMapping("/showCreate")
@@ -40,6 +57,9 @@ public class LocationController {
 
 		// let's add message to the UI
 		modelmap.addAttribute("message", msg);
+		
+		//Sending Email confirmation of added Location
+		emailUtil.sendEmail("modinilesh833@gmail.com", "Location Saved", "Location is saved in DB Successfully.");
 
 		return "createLocation";
 	}
@@ -87,6 +107,21 @@ public class LocationController {
 		List<Location> allLocations = service.getAllLocations();
 		modelmap.addAttribute("locations", allLocations);
 		return "displayLocations";
+	}
+	
+	@GetMapping("/generateReport")
+	public String getReport() {
+		
+		//creating path using ServletContext
+		String path = servletContext.getRealPath("/");
+		
+		//getting the data
+		List<Object[]> data = repository.findTypeAndTypeCount();
+		
+		//creating the chart
+		reportUtil.generatePiChart(path, data);
+		
+		return "report";
 	}
 
 }
