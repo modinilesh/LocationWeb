@@ -1,87 +1,196 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Location</title>
+  <title>Create Location</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #333;
+      padding: 20px;
       text-align: center;
+      color: #fff;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 36px;
+    }
+
+    p {
+      margin-top: 5px;
+      font-size: 18px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px;
+    }
+
+    .sidebar {
+      width: 25%;
+      background-color: #111;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 20px;
     }
 
     form {
-      display: inline-block;
-      background-color: #ffffff;
+      width: 70%;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: left;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
 
     label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
     }
 
     input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 12px;
+      width: calc(100% - 16px);
+      padding: 10px;
+      margin-bottom: 16px;
       box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
     }
 
     .location-options {
       display: flex;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 20px;
     }
 
     .location-options label {
       margin-right: 20px;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .location-options input {
+      margin-right: 8px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     button {
-      background-color: #4caf50;
-      color: #ffffff;
-      padding: 10px 20px;
+      background-color: #333;
+      color: #fff;
+      padding: 12px 24px;
       border: none;
       border-radius: 5px;
+      font-size: 16px;
       cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+
+    footer {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      color: #fff;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    footer a {
+      color: #e1ad01;
+      text-decoration: none;
+      margin-right: 20px;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #d29600;
+    }
+
+    .message-container {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      color: #fff;
     }
   </style>
 </head>
+
 <body>
 
-<h1>Welcome Buddy! Update the Location from this page. </h1>
+<header>
+  <h1>Update Location Data</h1>
+  <p>Welcome Buddy! Update the Location from this page. </p>
+</header>
 
-<div>
+<div class="container">
+  <div class="sidebar">
+    <img src="https://source.unsplash.com/featured/?map" alt="Map Image">
+    <p>Explore the world with our location data manager.</p>
+  </div>
+
   <form action="updateLoc" method="post">
     <label for="id">ID:</label>
-    <input type="text" id="id" name="id" th:value="${location.id}" readonly="true" required >
+    <input type="text" id="id" name="id" required>
 
     <label for="code">Code:</label>
-    <input type="text" id="code" name="code" th:value="${location.code}" required>
+    <input type="text" id="code" name="code" required>
 
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" th:value="${location.name}" required>
+    <input type="text" id="name" name="name" required>
 
     <div class="location-options">
       <label>Location Type:</label>
       <div>
-        <input type="radio" id="urban" name="type" value="URBAN" th:field="*{location.type}" required>
+        <input type="radio" id="urban" name="type" value="URBAN" required>
         <label for="urban">Urban</label>
       </div>
       <div>
-        <input type="radio" id="rural" name="type" value="RURAL" th:field="*{location.type}" required>
+        <input type="radio" id="rural" name="type" value="RURAL" required>
         <label for="rural">Rural</label>
       </div>
     </div>
 
-    <button type="submit">Save</button>
+    <div class="button-container">
+      <button type="submit">Save</button>
+      <button><a th:href="displayLocations">View All Locations</a></button>
+    </div>
   </form>
 </div>
+
+<footer>
+  &copy; 2023 Nilesh Modi. All Rights Reserved.
+</footer>
+
 
 </body>
 </html>
