@@ -1,4 +1,4 @@
-# LocationWeb
+# LocationDataManager
 
 Welcome to LocationWeb, a web app designed to simplify location management. This application meets your requirements, offering an intuitive interface for adding, viewing, editing, and deleting locations. Additionally, it provides features such as email confirmations and live pie charts.
 
@@ -8,7 +8,7 @@ Follow these steps to get started:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/LocationWeb.git
+   git clone https://github.com/modinilesh/LocationWeb.git
    ```
 
 2. **Navigate to the project directory:**
@@ -18,12 +18,12 @@ Follow these steps to get started:
 
 3. **Install dependencies:**
    ```bash
-   npm install
+   ./mvnw clean install
    ```
 
 4. **Run the application:**
    ```bash
-   npm start
+   java -jar target/your-spring-boot-project.jar
    ```
 
 ## User Requirements
