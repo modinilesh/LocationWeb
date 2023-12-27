@@ -1,25 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Report</title>
   
   <style>
-	  div{
-		  display: flex;
-		  justify-content: center ;
-	  }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #333;
+      padding: 20px;
+      color: #fff;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin: 20px 0;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+    }
+
+    .pi-chart {
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+    
+    .pi-chart:hover {
+      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+      transform: scale(1.1);
+    }
+
+    footer {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      color: #fff;
+    }
   </style>
-  
 </head>
+
 <body>
 
-<h2>Report is represented in a PI Chart manner. </h2>
+<header>
+  <h1>Visual Report</h1>
+</header>
 
-<div >
-	<img src="piChart.jpeg" />
+<h2>This report is represented in a Pie Chart manner.</h2>
+
+<div class="container">
+  <img class="pi-chart" src="piChart.jpeg" alt="Pie Chart Image">
 </div>
+
+<footer>
+  &copy; 2023 Nilesh Modi. All Rights Reserved.
+</footer>
 
 </body>
 </html>

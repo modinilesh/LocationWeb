@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View All Locations</title>
-   <style>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      padding: 15px;
+      text-align: center;
+      color: white;
+    }
+
+    footer {
+      background-color: #333;
+      padding: 10px;
+      text-align: center;
+      color: white;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    #sidebar {
+      width: 20%;
+      background-color: #2c3e50;
+      padding: 20px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+    #sidebar img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+
+    #sidebar:hover img {
+      transform: scale(1.1);
+    }
+
+    #content {
+      width: 80%;
+      padding: 20px;
+    }
+
     table {
       border-collapse: collapse;
-      width: 80%;
-      margin: 20px auto;
+      width: 100%;
     }
 
     th, td {
@@ -18,50 +73,73 @@
     }
 
     th {
-      background-color: #4caf50;
+      background-color: #3498db;
       color: white;
     }
 
     tr:nth-child(even) {
-      background-color: #f2f2f2;
+      background-color: #ecf0f1;
     }
 
     a {
       text-decoration: none;
       color: #3498db;
       margin-right: 10px;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #2980b9;
     }
   </style>
 </head>
 
 <body>
 
-<h1>Locations</h1>
+<header>
+  <h1>Location Manager App</h1>
+  <p>Manage and update location data with ease.</p>
+</header>
 
-<table>
-    <tr>
+<div class="container">
+  <div id="sidebar">
+    <!-- Fetch a random map image from Unsplash API -->
+    <img src="https://source.unsplash.com/featured/?map" alt="Map Image">
+  </div>
+
+  <div id="content">
+    <table>
+      <tr>
         <th>id</th>
         <th>code</th>
         <th>name</th>
         <th>type</th>
-    </tr>
+      </tr>
 
-    <tr th:each="location : ${locations}">
+      <tr th:each="location : ${locations}">
         <td th:text="${location.id}"></td>
         <td th:text="${location.code}"></td>
         <td th:text="${location.name}"></td>
         <td th:text="${location.type}"></td>
         <td>
-            <a th:href="@{'deleteLocation?id=' + ${location.id}}">delete</a>
+          <a th:href="@{'deleteLocation?id=' + ${location.id}}">delete</a>
         </td>
         <td>
-            <a th:href="@{'updateLocation?id=' + ${location.id}}">edit</a>
+          <a th:href="@{'updateLocation?id=' + ${location.id}}">edit</a>
         </td>
-    </tr>
+      </tr>
 
-</table>
-<a th:href="@{'showCreate'}">Add Location</a>
-<a th:href="@{'generateReport'}">Generate Report</a>
+    </table>
+
+    <a th:href="@{'showCreate'}">Add Location</a>
+    <a th:href="@{'generateReport'}">Generate Report</a>
+
+  </div>
+</div>
+
+<footer>
+  © 2023 Nilesh Modi. All Rights Reserved.
+</footer>
 
 </body>
 </html>
